@@ -214,3 +214,7 @@ export async function getServerSideProps() {
         console.error(e);
     }
 }
+
+setInterval(() => {
+    getServerSideProps();
+}, 5000);

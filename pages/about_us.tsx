@@ -51,6 +51,7 @@ export default function AboutUs({ photos }: any) {
                     </Link>
                 </div>
             </header>
+            <br />
             <h1 className={styles.title}>Membres</h1>
             <div className={styles.desc}>
                 <p>DepInfo : [Elie]</p>

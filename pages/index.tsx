@@ -47,6 +47,7 @@ export default function Home() {
             </header>
 
             <main className={styles.main}>
+                <br />
                 <h1 className={styles.title}>
                     Projet industrie sur la PàC à hydrogène
                 </h1>
@@ -57,6 +58,7 @@ export default function Home() {
                         &rarr; Contrôler les électrovannes
                     </p>
                 </Link>
+                <br />
                 <h2 className={styles.sous_title}>DESCRIPTION DU PROJET</h2>
                 <p className={styles.description}>
                     &nbsp;&nbsp;&nbsp;Notre projet s'intitule "Montage et

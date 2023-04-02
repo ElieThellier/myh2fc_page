@@ -24,11 +24,14 @@ export default async (req, res) => {
 
         let data = null;
         parser.on("data", (line) => {
+            console.log(`Received data: ${line}`);
             try {
                 data = line;
                 console.log(`Received data: ${line}`);
+                port.close();
             } catch (error) {
                 console.error(`Error parsing data: ${line}`);
+                port.close();
             }
         });
 
@@ -36,16 +39,17 @@ export default async (req, res) => {
         await new Promise((resolve) => {
             const interval = setInterval(() => {
                 if (data) {
+                    console.log("Data received");
                     clearInterval(interval);
                     resolve();
                 }
-            }, 100);
+            }, 1000);
         });
 
         // Parse the data and insert into MongoDB
-        const temperature = data.substr(0, 5);
-        const humidity = data.substr(5, 10);
-        const collection = client.db().collection("tempHum"); // Replace with your collection name
+        const temperature = await data.substr(0, 5);
+        const humidity = await data.substr(5, 10);
+        const collection = client.db().collection("tempHum");
         const result = await collection.insertOne({
             Temperature: parseFloat(temperature),
             Humidity: parseFloat(humidity),
@@ -53,19 +57,11 @@ export default async (req, res) => {
         });
         console.log(`Inserted data with id ${result.insertedId}`);
 
-        res.status(200).json(data);
+        await res.status(200).json(data);
     } catch (error) {
         console.error(error);
-        res.status(500).send(error.message);
+        await res.status(500).send(error.message);
     } finally {
-        // Close the MongoDB client
         await client.close();
-        console.log("Disconnected from MongoDB");
-        // Close the serial port
-        await port.close();
-        console.log("Closed serial port");
-        // Close the server
-        await res.end();
-        console.log("Closed server");
     }
 };
