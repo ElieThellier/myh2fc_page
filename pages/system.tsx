@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
 import { Bar, Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
@@ -70,9 +71,36 @@ export default function System({ datas }: any) {
             <Head>
                 <title>System</title>
             </Head>
-            SYSTEM
-            <br />
-            <Link href="/">Back to home</Link>
+            <header className={styles.header}>
+                <Link href="https://www.symbio.one/">
+                    <Image
+                        src="/logo1.png"
+                        alt="Logo"
+                        width={250}
+                        height={120}
+                    />
+                </Link>
+                <div className={styles.bar}>
+                    <Link href=".." className={styles.buttons}>
+                        <h1>ACCUEIL</h1>
+                    </Link>
+                    <Link href="system" className={styles.buttons}>
+                        <h1>
+                            CONTRÔLE
+                            <br />
+                            -
+                            <br />
+                            COMMANDE
+                        </h1>
+                    </Link>
+                    <Link href="about" className={styles.buttons}>
+                        <h1>ANNEXES</h1>
+                    </Link>
+                    <Link href="about_us" className={styles.buttons}>
+                        <h1>NOTRE GROUPE</h1>
+                    </Link>
+                </div>
+            </header>
             <div className={styles.wrapper}>
                 <div className={styles.one}>
                     <h2>Main variables</h2>
@@ -82,14 +110,20 @@ export default function System({ datas }: any) {
                                 <td className={styles.col}>
                                     <div>
                                         {datas.map((data: any) => (
-                                            <p>{data.Temperature}°C</p>
+                                            <p>
+                                                T<sub>pile</sub> ={" "}
+                                                <b>{data.Temperature}°C</b>
+                                            </p>
                                         ))}
                                     </div>
                                 </td>
                                 <td className={styles.col}>
                                     <div>
                                         {datas.map((data: any) => (
-                                            <p>{data.Humidity}%</p>
+                                            <p>
+                                                H<sub>2</sub>O<sub>pile</sub> ={" "}
+                                                <b>{data.Humidity}%</b>
+                                            </p>
                                         ))}
                                     </div>
                                 </td>
@@ -147,6 +181,15 @@ export default function System({ datas }: any) {
                     <Bar data={data_hist} width={400} height={200} />
                 </div>
             </div>
+            <footer className={styles.footer}>
+                <Link href="about_us">
+                    Membres du groupe :{" "}
+                    <b className={styles.noms}>
+                        &nbsp;CORCORAL Erwan / ROCH Valentin / SALHI Thomas /
+                        THELLIER Elie
+                    </b>
+                </Link>
+            </footer>
         </div>
     );
 }

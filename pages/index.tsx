@@ -25,6 +25,9 @@ export default function Home() {
                     />
                 </Link>
                 <div className={styles.bar}>
+                    <Link href=".." className={styles.buttons}>
+                        <h1>ACCUEIL</h1>
+                    </Link>
                     <Link href="system" className={styles.buttons}>
                         <h1>
                             CONTRÔLE
@@ -54,16 +57,16 @@ export default function Home() {
                         &rarr; Contrôler les électrovannes
                     </p>
                 </Link>
-
+                <h2 className={styles.sous_title}>DESCRIPTION DU PROJET</h2>
                 <p className={styles.description}>
                     &nbsp;&nbsp;&nbsp;Notre projet s'intitule "Montage et
                     exploitation d'un banc d'essai avec une pile à combustible à
                     hydrogène pour la recharge de batteries de robots" et a pour
                     objectif de développer un système de recharge autonome, via
-                    P&C H2, du robot SCAR de Boston Dynamics. Il s'agit d'un
+                    PàC H2, du robot SCAR de Boston Dynamics. Il s'agit d'un
                     projet en collaboration avec l'entreprise Symbio, leader
-                    mondial de la mobilité hydrogène. <br />
-                    &nbsp;&nbsp;&nbsp;*Insérer le résumé du rapport ici*
+                    mondial de la mobilité hydrogène, et avec l'IJL, laboratoire
+                    de recherche en science des matériaux.
                 </p>
                 <Link href="about" className={styles.card}>
                     <h2 className={styles.sous_title}>ANNEXES</h2>

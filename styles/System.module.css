@@ -3,6 +3,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
+    color: #eeeeee;
 }
 .wrapper h2 {
     text-align: center;
@@ -44,4 +45,55 @@
 .five {
     grid-column: 2;
     grid-row: 3;
+}
+
+.header {
+    display: flex;
+    flex: 1;
+    background-color: #eee;
+    overflow: hidden;
+    flex-direction: row;
+}
+
+.bar {
+    margin-left: 40px;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    background-color: #1f8ccc;
+    color: #eee;
+    font-size: 0.6rem;
+    transform: skewX(-30deg);
+}
+
+.buttons {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    transform: skewX(30deg);
+    text-align: center;
+    position: relative;
+}
+
+.bar:hover,
+.bar:focus,
+.bar:active {
+    background-color: #283555;
+    color: #eee;
+}
+
+.footer {
+    display: flex;
+    flex: 1;
+    padding: 2rem 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #283555;
+    color: #eee;
+}
+
+.noms {
+    color: #1f8ccc;
+    font-weight: 800;
 }
