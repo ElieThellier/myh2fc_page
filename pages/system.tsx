@@ -215,6 +215,6 @@ export async function getServerSideProps() {
     }
 }
 
-setInterval(() => {
-    getServerSideProps();
-}, 5000);
+/* setInterval(() => {
+    fetch("http://localhost:3000/api/arduino");
+}, 10000); */ // able only if using a real serial port and Arduino

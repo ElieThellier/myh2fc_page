@@ -5,9 +5,11 @@ import { MongoClient } from "mongodb";
 const port = new SerialPort({
     path: "COM3",
     baudRate: 9600,
-    parser: new ReadlineParser("\n"),
+    parser: new ReadlineParser(" "), // use delimiter: " " if virtual serialport abd PuTTY
+    // use delimiter: "\n" if real serialport and Arduino
 });
-const parser = port.pipe(new ReadlineParser({ delimiter: "\r\n" }));
+const parser = port.pipe(new ReadlineParser({ delimiter: " " })); // use delimiter: " " if virtual serialport abd PuTTY
+// use delimiter: "\n" if real serialport and Arduino
 
 const uri =
     "mongodb+srv://eliethellier4:aVHm1TrM5XkG6X7n@mydbs.m7gdljz.mongodb.net/dhtTemp?retryWrites=true&w=majority";
@@ -24,14 +26,13 @@ export default async (req, res) => {
 
         let data = null;
         parser.on("data", (line) => {
-            console.log(`Received data: ${line}`);
             try {
                 data = line;
                 console.log(`Received data: ${line}`);
-                port.close();
+                port.write(`Received data: ${line}`); // able only if using virtual serialport and PuTTY
+                // port.close(); // able only if using real serialport and Arduino
             } catch (error) {
                 console.error(`Error parsing data: ${line}`);
-                port.close();
             }
         });
 
@@ -62,6 +63,6 @@ export default async (req, res) => {
         console.error(error);
         await res.status(500).send(error.message);
     } finally {
-        await client.close();
+        // await client.close(); // disable when using virtual serialport and PuTTY
     }
 };
